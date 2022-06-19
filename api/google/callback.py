@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException
 from fastapi_sqlalchemy import db
-from httplib2 import DigestAuthentication
 import requests
 from core.config import settings
 from core.const import GOOGLE_TOKEN_ENDPOINT, GOOGLE_USER_INFO

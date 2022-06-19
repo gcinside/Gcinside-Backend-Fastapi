@@ -6,7 +6,7 @@ from core.const import GOOGLE_AUTH_ENDPOINT
 router = APIRouter()
 
 
-@router.get("/login")
+@router.post("/login")
 async def google_login():
     params = {
         "client_id": settings.GOOGLE_CLIENT_ID,
@@ -16,4 +16,4 @@ async def google_login():
         "response_type": "code",
     }
 
-    return {"redirect_url": GOOGLE_AUTH_ENDPOINT + "?" + urlencode(params)}
+    return {"continue": GOOGLE_AUTH_ENDPOINT + "?" + urlencode(params)}
