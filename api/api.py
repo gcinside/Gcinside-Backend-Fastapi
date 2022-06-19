@@ -1,7 +1,11 @@
 from fastapi import APIRouter
-from .google import login, callback
+from .google import google_login, google_callback
+from .github import github_login, github_callback
 
 api_router = APIRouter()
 
-api_router.include_router(login.router, prefix="/google", tags=["google_auth"])
-api_router.include_router(callback.router, prefix="/google", tags=["google_auth"])
+api_router.include_router(google_login.router, prefix="/google", tags=["google_auth"])
+api_router.include_router(google_callback.router, prefix="/google", tags=["google_auth"])
+
+api_router.include_router(github_login.router, prefix="/github", tags=["github_auth"])
+api_router.include_router(github_callback.router, prefix="/github", tags=["github_auth"])
