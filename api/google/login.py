@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from fastapi.responses import RedirectResponse
 from urllib.parse import urlencode
 from core.config import settings
 from core.const import GOOGLE_AUTH_ENDPOINT

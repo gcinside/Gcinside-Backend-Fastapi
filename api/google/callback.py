@@ -1,5 +1,4 @@
-from os import access
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 import requests
 from core.config import settings
 from core.const import GOOGLE_TOKEN_ENDPOINT, GOOGLE_USER_INFO
@@ -10,7 +9,7 @@ router = APIRouter()
 @router.get("/callback")
 async def google_callback(error = None, code = None):
     if error:
-        return {"error": error}
+        raise HTTPException(status_code = 400, detail = error)
     
     params = {
         "client_id": settings.GOOGLE_CLIENT_ID,
