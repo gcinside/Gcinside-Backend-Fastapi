@@ -6,11 +6,11 @@ from core.const import GOOGLE_AUTH_ENDPOINT
 router = APIRouter()
 
 
-@router.post("/login")
+@router.get("/login")
 async def google_login():
     params = {
         "client_id": settings.GOOGLE_CLIENT_ID,
-        "redirect_uri": settings.GOOGLE_CALLBACK_URI,
+        "redirect_uri": settings.GOOGLE_CALLBACK_URL,
         "scope": settings.GOOGLE_AUTH_SCOPE,
         "access_type": "offline",
         "response_type": "code",
