@@ -1,11 +1,12 @@
 from fastapi import APIRouter, HTTPException
 from fastapi_sqlalchemy import db
+from datetime import datetime
 import requests
 from core.config import settings
 from core.const import GOOGLE_TOKEN_ENDPOINT, GOOGLE_USER_INFO
 from models.account_user import AccountUser
 from utils.token import generate_token
-from datetime import datetime
+
 
 router = APIRouter()
 
