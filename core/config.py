@@ -14,18 +14,17 @@ class Settings(BaseSettings):
     DB_PASSWORD: str = os.getenv("DB_PASSWORD")
     DB_HOST: str = os.getenv("DB_HOST")
     DB_PORT: int = os.getenv("DB_PORT")
-    DB_URL: str = (
-        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-    )
+    DB_URL: str = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
     GOOGLE_CLIENT_ID: str = os.getenv("GOOGLE_CLIENT_ID")
     GOOGLE_CLIENT_SECRET: str = os.getenv("GOOGLE_CLIENT_SECRET")
     GOOGLE_CALLBACK_URI: str = os.getenv("GOOGLE_CALLBACK_URI")
-    GOOGLE_AUTH_SCOPE:str = os.getenv("GOOGLE_AUTH_SCOPE")
+    GOOGLE_AUTH_SCOPE: str = os.getenv("GOOGLE_AUTH_SCOPE")
 
-    ACCESS_TOKEN_EXPIRATION_TIME=int(os.getenv("ACCESS_TOKEN_EXPIRATION_TIME"))
-    REFRESH_TOKEN_EXPIRATION_TIME=int(os.getenv("REFRESH_TOKEN_EXPIRATION_TIME"))
-    JWT_SECRET=os.getenv("JWT_SECRET")
-    JWT_ALGORITHM="HS256"
-    
+    ACCESS_TOKEN_EXPIRATION_TIME = int(os.getenv("ACCESS_TOKEN_EXPIRATION_TIME"))
+    REFRESH_TOKEN_EXPIRATION_TIME = int(os.getenv("REFRESH_TOKEN_EXPIRATION_TIME"))
+    JWT_SECRET = os.getenv("JWT_SECRET")
+    JWT_ALGORITHM = "HS256"
+
+
 settings = Settings()

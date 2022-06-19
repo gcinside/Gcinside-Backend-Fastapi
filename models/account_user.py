@@ -1,8 +1,9 @@
-from sqlalchemy import Column, DateTime,String, Integer, Boolean
-
+from sqlalchemy import Column, DateTime, String, Integer, Boolean
 from db.base import Base
+
+
 class AccountUser(Base):
-    __tablename__ = 'account_user'
+    __tablename__ = "account_user"
 
     user_id = Column(Integer, primary_key=True, index=True)
     user_email = Column(String(255), nullable=False)

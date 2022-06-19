@@ -11,10 +11,10 @@ router = APIRouter()
 
 
 @router.get("/callback")
-async def google_callback(error = None, code = None):
+async def google_callback(error=None, code=None):
     if error:
-        raise HTTPException(status_code = 400, detail = error)
-    
+        raise HTTPException(status_code=400, detail=error)
+
     params = {
         "client_id": settings.GOOGLE_CLIENT_ID,
         "client_secret": settings.GOOGLE_CLIENT_SECRET,
@@ -29,24 +29,26 @@ async def google_callback(error = None, code = None):
     user = db.session.query(AccountUser).filter_by(user_email=response["email"]).first()
 
     if user:
-        payload = {'sub': user.user_email}
+        payload = {"sub": user.user_email}
         access_token = generate_token(payload, "access")
         refresh_token = generate_token(payload, "refresh")
 
         return {"access_token": access_token, "refresh_token": refresh_token}
 
     else:
-        db.session.add(AccountUser(
-            user_email = response["email"],
-            profile_image = response["picture"],
-            user_name = response["name"],
-            join_date = datetime.utcnow(),
-            is_superuser = False,
-            is_staff = False,
-        ))
+        db.session.add(
+            AccountUser(
+                user_email=response["email"],
+                profile_image=response["picture"],
+                user_name=response["name"],
+                join_date=datetime.utcnow(),
+                is_superuser=False,
+                is_staff=False,
+            )
+        )
         db.session.commit()
 
-        payload = {'sub': response["email"]}
+        payload = {"sub": response["email"]}
         access_token = generate_token(payload, "access")
         refresh_token = generate_token(payload, "refresh")
 
