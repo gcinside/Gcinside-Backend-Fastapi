@@ -6,7 +6,6 @@ from core.config import settings
 from core.const import GITHUB_TOKEN_ENDPOINT, GITHUB_USER_INFO, GITHUB_EMAIL_INFO
 from models.account_user import AccountUser
 from utils.token import generate_token
-from urllib.parse import urlparse, parse_qsl
 
 router = APIRouter()
 
