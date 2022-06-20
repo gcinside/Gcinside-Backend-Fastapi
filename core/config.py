@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRATION_TIME = int(os.getenv("ACCESS_TOKEN_EXPIRATION_TIME"))
     REFRESH_TOKEN_EXPIRATION_TIME = int(os.getenv("REFRESH_TOKEN_EXPIRATION_TIME"))
     JWT_SECRET = os.getenv("JWT_SECRET")
-    JWT_ALGORITHM = "HS256"
+    JWT_ALGORITHM = os.getenv("JWT_ALGORITHM")
 
 
 settings = Settings()
