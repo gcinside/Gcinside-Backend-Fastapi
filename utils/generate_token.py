@@ -13,4 +13,4 @@ def generate_token(payload, token_type):
     payload["exp"] = exp
     payload["iat"] = datetime.now()
 
-    return jwt.encode(payload, settings.JWT_SECRET, algorithm=settings.JWT_ALGORITHM)
+    return "Bearer " + jwt.encode(payload, settings.JWT_SECRET, algorithm=settings.JWT_ALGORITHM)

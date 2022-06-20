@@ -4,8 +4,9 @@ import jwt
 
 
 async def verify_token(Authorization=Header()):
+    token = Authorization.split(" ")[1]
     try:
-        jwt.decode(Authorization, settings.JWT_SECRET, algorithms=settings.JWT_ALGORITHM)
+        jwt.decode(token, settings.JWT_SECRET, algorithms=settings.JWT_ALGORITHM)
 
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token expired")
@@ -13,5 +14,4 @@ async def verify_token(Authorization=Header()):
     except jwt.InvalidTokenError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
 
-    else:
-        return
+    return token
