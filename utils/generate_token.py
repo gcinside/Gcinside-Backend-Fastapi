@@ -11,6 +11,6 @@ def generate_token(payload, token_type):
 
     payload["type"] = f"{token_type}_token"
     payload["exp"] = exp
-    payload["iat"] = datetime.now()
+    payload["iat"] = datetime.now(timezone(timedelta(hours=9)))
 
     return jwt.encode(payload, settings.JWT_SECRET, algorithm=settings.JWT_ALGORITHM)
