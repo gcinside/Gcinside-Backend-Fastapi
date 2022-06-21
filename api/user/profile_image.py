@@ -9,7 +9,7 @@ from models.account_user import AccountUser
 router = APIRouter()
 
 
-@router.put("/image", response_model=ProfileImageOut)
+@router.patch("/image", response_model=ProfileImageOut)
 async def profile_image(profile_image: ProfileImageIn, token: str = Depends(verify_token)):
     sub = get_payload_value(token, "sub")
     db.session.query(AccountUser).filter_by(user_email=sub).update({"profile_image": profile_image.profile_image})

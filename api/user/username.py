@@ -9,7 +9,7 @@ from models.account_user import AccountUser
 router = APIRouter()
 
 
-@router.put("/username", response_model=UsernameOut)
+@router.patch("/username", response_model=UsernameOut)
 async def username(username: UsernameIn, token: str = Depends(verify_token)):
     sub = get_payload_value(token, "sub")
     db.session.query(AccountUser).filter_by(user_email=sub).update({"user_name": username.username})
