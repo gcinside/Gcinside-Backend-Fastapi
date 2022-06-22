@@ -14,14 +14,12 @@ router = APIRouter()
 async def github_callback(error=None, code=None):
     if error:
         raise HTTPException(status_code=400, detail=error)
-    
-    params = {
-        "client_id": settings.GITHUB_CLIENT_ID,
-        "client_secret": settings.GITHUB_CLIENT_SECRET,
-        "code": code
-    }
 
-    access_token = requests.post(GITHUB_TOKEN_ENDPOINT, headers={"Accept": "application/json"}, params=params).json()["access_token"]
+    params = {"client_id": settings.GITHUB_CLIENT_ID, "client_secret": settings.GITHUB_CLIENT_SECRET, "code": code}
+
+    access_token = requests.post(GITHUB_TOKEN_ENDPOINT, headers={"Accept": "application/json"}, params=params).json()[
+        "access_token"
+    ]
     response = requests.get(GITHUB_USER_INFO, headers={"Authorization": "Token " + access_token}).json()
     email = requests.get(GITHUB_EMAIL_INFO, headers={"Authorization": "Token " + access_token}).json()[0]["email"]
 

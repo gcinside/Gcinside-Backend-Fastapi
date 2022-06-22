@@ -1,6 +1,5 @@
 from fastapi import APIRouter, status, HTTPException
 from schemas.auth import RefreshIn, RefreshOut
-from core.config import settings
 from utils.generate_token import generate_token
 from utils.get_payload_value import get_payload_value
 import jwt
