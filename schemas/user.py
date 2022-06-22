@@ -19,7 +19,7 @@ class ProfileImageIn(BaseModel):
     profile_image: str
 
     class Config:
-        schema_extra = {"example": {"profile_image": "https://avatars0.githubusercontent.com/u/..."}}
+        schema_extra = {"example": {"profile_image": "https://avatars.githubusercontent.com/u/..."}}
 
 
 class ProfileImageOut(BaseModel):

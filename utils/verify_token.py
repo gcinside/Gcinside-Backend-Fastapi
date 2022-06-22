@@ -4,7 +4,7 @@ import jwt
 
 
 async def verify_token(Authorization=Header()):
-    token = Authorization
+    token = Authorization.split(" ")[1]
     try:
         jwt.decode(token, settings.JWT_SECRET, algorithms=settings.JWT_ALGORITHM)
 
