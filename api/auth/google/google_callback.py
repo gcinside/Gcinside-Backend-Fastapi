@@ -13,6 +13,7 @@ router = APIRouter()
 
 @router.get("/callback")
 async def google_callback(error=None, code=None):
+    """Login 후 구글에서 주는 Callback"""
     if error:
         raise HTTPException(status_code=400, detail=error)
 
