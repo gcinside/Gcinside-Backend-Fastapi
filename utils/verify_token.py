@@ -3,8 +3,7 @@ from core.config import settings
 import jwt
 
 
-async def verify_token(Authorization=Header()):
-    print(Authorization)
+async def verify_token(Authorization=Header(example="Bearer eyJ0...")):
     try:
         token = Authorization.split(" ")[1]
         jwt.decode(token, settings.JWT_SECRET, algorithms=settings.JWT_ALGORITHM)
