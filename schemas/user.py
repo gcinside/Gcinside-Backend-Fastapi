@@ -16,10 +16,10 @@ class UsernameOut(BaseModel):
 
 
 class ProfileImageIn(BaseModel):
-    profile_image: str
+    image_url: str
 
     class Config:
-        schema_extra = {"example": {"profile_image": "https://avatars.githubusercontent.com/u/..."}}
+        schema_extra = {"example": {"image_url": "https://avatars.githubusercontent.com/u/..."}}
 
 
 class ProfileImageOut(BaseModel):
@@ -27,3 +27,20 @@ class ProfileImageOut(BaseModel):
 
     class Config:
         schema_extra = {"example": {"message": "Update image"}}
+
+
+class UserInfoOut(BaseModel):
+    id: int
+    email: str
+    username: str
+    profile_image: str
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "id": "1",
+                "email": "email",
+                "username": "username",
+                "profile_image": "https://avatars.githubusercontent.com/u/...",
+            }
+        }

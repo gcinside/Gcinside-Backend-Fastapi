@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.post("/refresh", response_model=RefreshOut)
-async def username(token: RefreshIn):
+async def refresh(token: RefreshIn):
     try:
         token_type = get_payload_value(token.refresh_token, "type")
         if token_type != "refresh_token":

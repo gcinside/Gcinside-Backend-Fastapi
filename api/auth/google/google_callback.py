@@ -4,7 +4,7 @@ from datetime import datetime
 import requests
 from core.config import settings
 from core.const import GOOGLE_TOKEN_ENDPOINT, GOOGLE_USER_INFO
-from models.account_user import AccountUser
+from models.user import User
 from utils.generate_token import generate_token
 
 
@@ -27,7 +27,7 @@ async def google_callback(error=None, code=None):
     access_token = requests.post(GOOGLE_TOKEN_ENDPOINT, params=params).json()["access_token"]
     response = requests.get(GOOGLE_USER_INFO, params={"access_token": access_token}).json()
 
-    user = db.session.query(AccountUser).filter_by(user_email=response["email"]).first()
+    user = db.session.query(User).filter_by(user_email=response["email"]).first()
 
     if user:
         payload = {"sub": user.user_email}
@@ -38,12 +38,11 @@ async def google_callback(error=None, code=None):
 
     else:
         db.session.add(
-            AccountUser(
+            User(
                 user_email=response["email"],
                 profile_image=response["picture"],
                 user_name=response["name"],
                 join_date=datetime.utcnow(),
-                is_superuser=False,
                 is_staff=False,
             )
         )

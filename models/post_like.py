@@ -1,15 +1,15 @@
-from sqlalchemy import Column, ForeignKey, Integer, Boolean
-from sqlalchemy.orm import relationship
 from db.base import Base
+from sqlalchemy import Column, ForeignKey, Integer
+from sqlalchemy.orm import relationship
 
 
 class PostLike(Base):
     __tablename__ = "post_like"
 
-    like_id = Column(Integer, primary_key=True, index=True)
-    post_id = Column(ForeignKey("post_post.post_id"), nullable=False, index=True)
-    user_id = Column(ForeignKey("account_user.user_id"), nullable=False, index=True)
-    like_type = Column(Boolean, nullable=False)
+    like_id = Column(Integer, primary_key=True, autoincrement=True)
+    post_id = Column(ForeignKey("post.post_id"), nullable=False, index=True)
+    user_id = Column(ForeignKey("user.user_id"), nullable=False, index=True)
+    like_type = Column(Integer, nullable=False)
 
-    post = relationship("PostPost")
-    user = relationship("AccountUser")
+    post = relationship("Post")
+    user = relationship("User")

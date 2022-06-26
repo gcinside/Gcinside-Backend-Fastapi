@@ -4,7 +4,7 @@ from datetime import datetime
 import requests
 from core.config import settings
 from core.const import GITHUB_TOKEN_ENDPOINT, GITHUB_USER_INFO, GITHUB_EMAIL_INFO
-from models.account_user import AccountUser
+from models.user import User
 from utils.generate_token import generate_token
 
 router = APIRouter()
@@ -23,7 +23,7 @@ async def github_callback(error=None, code=None):
     response = requests.get(GITHUB_USER_INFO, headers={"Authorization": "Token " + access_token}).json()
     email = requests.get(GITHUB_EMAIL_INFO, headers={"Authorization": "Token " + access_token}).json()[0]["email"]
 
-    user = db.session.query(AccountUser).filter_by(user_email=email).first()
+    user = db.session.query(User).filter_by(user_email=email).first()
 
     if user:
         payload = {"sub": user.user_email}
@@ -34,12 +34,11 @@ async def github_callback(error=None, code=None):
 
     else:
         db.session.add(
-            AccountUser(
+            User(
                 user_email=email,
                 profile_image=response["avatar_url"],
                 user_name=response["login"],
                 join_date=datetime.utcnow(),
-                is_superuser=False,
                 is_staff=False,
             )
         )

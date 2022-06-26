@@ -16,6 +16,10 @@ class Settings(BaseSettings):
     DB_PORT: int = os.getenv("DB_PORT")
     DB_URL: str = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
+    AWS_ACCESS_KEY: str = os.getenv("AWS_ACCESS_KEY")
+    AWS_SECRET_KEY: str = os.getenv("AWS_SECRET_KEY")
+    S3_BUCKET_NAME: str = os.getenv("S3_BUCKET_NAME")
+
     GOOGLE_CLIENT_ID: str = os.getenv("GOOGLE_CLIENT_ID")
     GOOGLE_CLIENT_SECRET: str = os.getenv("GOOGLE_CLIENT_SECRET")
     GOOGLE_CALLBACK_URL: str = os.getenv("GOOGLE_CALLBACK_URL")
