@@ -28,10 +28,12 @@ async def dislike_post(postid: int, token: str = Depends(verify_token)):
 
     if dislike == None:
         db.session.add(PostLike(post_id=postid, user_id=user_id, like_type=0))
+        db.session.query(Post).filter_by(post_id=postid).update({"dislike": post.dislike + 1})
         db.session.commit()
         return {"message": "Success to dislike post"}
 
     elif dislike != None:
         db.session.query(PostLike).filter_by(post_id=postid, user_id=user_id).delete()
+        db.session.query(Post).filter_by(post_id=postid).update({"dislike": post.dislike - 1})
         db.session.commit()
         return {"message": "Success to canceling dislike"}

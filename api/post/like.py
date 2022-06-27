@@ -27,10 +27,12 @@ async def like_post(postid: int, token: str = Depends(verify_token)):
 
     if like == None:
         db.session.add(PostLike(post_id=postid, user_id=user_id, like_type=1))
+        db.session.query(Post).filter_by(post_id=postid).update({"like": post.like + 1})
         db.session.commit()
         return {"message": "Success to like post"}
 
     elif like != None:
         db.session.query(PostLike).filter_by(post_id=postid, user_id=user_id).delete()
+        db.session.query(Post).filter_by(post_id=postid).update({"like": post.like - 1})
         db.session.commit()
         return {"message": "Success to canceling like"}

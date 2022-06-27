@@ -12,17 +12,19 @@ router = APIRouter()
 async def read_post(postid: int):
 
     post = db.session.query(Post).filter_by(post_id=postid).first()
-    print(post)
     if not post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
-    user = db.session.query(User).filter_by(user_id=post.author_id).first()
 
     result = {
-        "title": post.post_title,
-        "content": post.post_content,
-        "image_url": post.post_image,
-        "author": user.user_name,
+        "post_id": post.post_id,
+        "author_id": post.author_id,
+        "gallery_id": post.gallery_id,
+        "post_title": post.post_title,
+        "post_content": post.post_content,
+        "post_image": post.post_image,
         "created_at": post.created_at,
+        "like": post.like,
+        "dislike": post.dislike,
     }
 
-    return result
+    return {"post": result}

@@ -77,6 +77,8 @@ class ReadPostOut(BaseModel):
                 "image_url": "https://gcinside.s3.ap-northeast-2.amazonaws.com/7.png",
                 "author": "작성자",
                 "created_at": "2020-01-01 00:00:00",
+                "like": 0,
+                "dislike": 0,
             }
         }
 
@@ -110,6 +112,31 @@ class ReadPostListOut(BaseModel):
                         "post_content": "내용",
                         "post_image": "https://gcinside.s3.ap-northeast-2.amazonaws.com/7.png",
                         "created_at": "2020-01-01 00:00:00",
+                        "like": "0",
+                        "dislike": "0",
+                    }
+                ]
+            }
+        }
+
+
+class ReadPopularPostListOut(BaseModel):
+    popular_list: list
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "popular_post_list": [
+                    {
+                        "post_id": "1",
+                        "author_id": "1",
+                        "gallery_id": "1",
+                        "post_title": "제목",
+                        "post_content": "내용",
+                        "post_image": "https://gcinside.s3.ap-northeast-2.amazonaws.com/7.png",
+                        "created_at": "2020-01-01 00:00:00",
+                        "like": "0",
+                        "dislike": "0",
                     }
                 ]
             }
