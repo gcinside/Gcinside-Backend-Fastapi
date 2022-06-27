@@ -16,14 +16,14 @@ router = APIRouter()
 async def delete_post(postid: int, token: str = Depends(verify_token)):
 
     email = get_payload_value(token, "sub")
-    user_id = db.session.query(User).filter_by(user_email=email).first().user_id
+    user_id, is_staff = db.session.query(User.user_id, User.is_staff).filter_by(user_email=email).first()
     post = db.session.query(Post).filter_by(post_id=postid).first()
 
     if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
 
-    if user_id != post.author_id:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="User is not author")
+    if user_id != post.author_id and is_staff == False:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You are unauthorized to make this request")
 
     db.session.query(PostComment).filter_by(post_id=postid).delete()
     db.session.query(PostLike).filter_by(post_id=postid).delete()

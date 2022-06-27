@@ -12,6 +12,8 @@ class Post(Base):
     post_title = Column(String(100), nullable=False, index=True)
     post_content = Column(Text, nullable=False)
     post_image = Column(String(100), nullable=False, index=True)
+    like = Column(Integer, nullable=False, default=0)
+    dislike = Column(Integer, nullable=False, default=0)
     created_at = Column(DateTime, nullable=False)
 
     author = relationship("User")

@@ -31,6 +31,8 @@ async def read_post_list(galleryid: int, page: int = 1):
                 "post_content": post.post_content,
                 "post_image": post.post_image,
                 "created_at": post.created_at,
+                "like": post.like,
+                "dislike": post.dislike,
             }
         )
 
