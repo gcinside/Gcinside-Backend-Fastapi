@@ -82,7 +82,7 @@ class ReadPostOut(BaseModel):
                 "post_title": "글제목",
                 "post_content": "글내용",
                 "post_image": "url",
-                "created_at": "2022-06-28T00:49:39,
+                "created_at": "2022-06-28T00:49:39",
                 "like": 0,
                 "dislike": 0,
             }
