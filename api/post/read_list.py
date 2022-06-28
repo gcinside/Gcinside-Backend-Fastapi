@@ -17,7 +17,7 @@ async def read_post_list(galleryid: int, page: int = 1):
     for post in (
         db.session.query(Post)
         .filter_by(gallery_id=galleryid)
-        .order_by(Post.post_id.desc)
+        .order_by(Post.post_id.desc())
         .limit(30)
         .offset((page - 1) * 30)
         .all()

@@ -63,20 +63,26 @@ class UploadImageOut(BaseModel):
 
 
 class ReadPostOut(BaseModel):
-    title: str
-    content: str
-    image_url: str
-    author: str
+    post_id: int
+    author_id: int
+    gallery_id: int
+    post_title: str
+    post_content: str
+    post_image: str
     created_at: datetime
+    like: int
+    dislike: int
 
     class Config:
         schema_extra = {
             "example": {
-                "title": "제목",
-                "content": "내용",
-                "image_url": "https://gcinside.s3.ap-northeast-2.amazonaws.com/7.png",
-                "author": "작성자",
-                "created_at": "2020-01-01 00:00:00",
+                "post_id": "1",
+                "author_id": "1",
+                "gallery_id": "1",
+                "post_title": "글제목",
+                "post_content": "글내용",
+                "post_image": "url",
+                "created_at": datetime,
                 "like": 0,
                 "dislike": 0,
             }

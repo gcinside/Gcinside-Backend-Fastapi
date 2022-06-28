@@ -27,4 +27,4 @@ async def read_post(postid: int):
         "dislike": post.dislike,
     }
 
-    return {"post": result}
+    return result

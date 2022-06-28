@@ -6,12 +6,12 @@ from models.post import Post
 router = APIRouter()
 
 
-@router.get("/popular", response_model=ReadPopularPostListOut)
+@router.get("/popular")
 async def read_popular_post_list(galleryid: int):
 
     result = []
 
-    for post in db.session.query(Post).order_by(Post.like.desc()).limit(20).all():
+    for post in db.session.query(Post).filter_by(gallery_id=galleryid).order_by(Post.like.desc()).limit(20).all():
         result.append(
             {
                 "post_id": post.post_id,
