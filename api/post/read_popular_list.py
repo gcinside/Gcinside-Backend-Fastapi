@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter
 from fastapi_sqlalchemy import db
 from schemas.post import ReadPopularPostListOut
 from models.post import Post
@@ -6,7 +6,7 @@ from models.post import Post
 router = APIRouter()
 
 
-@router.get("/popular")
+@router.get("/popular", response_model=ReadPopularPostListOut)
 async def read_popular_post_list(galleryid: int):
 
     result = []
