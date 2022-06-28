@@ -127,7 +127,7 @@ class ReadPostListOut(BaseModel):
 
 
 class ReadPopularPostListOut(BaseModel):
-    popular_list: list
+    popular_post_list: list
 
     class Config:
         schema_extra = {
