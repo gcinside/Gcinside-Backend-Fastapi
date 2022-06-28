@@ -1,5 +1,5 @@
-from fastapi import FastAPI, Request
-from fastapi_sqlalchemy import DBSessionMiddleware, db
+from fastapi import FastAPI
+from fastapi_sqlalchemy import DBSessionMiddleware
 from api.api import api_router
 from core.config import settings
 
